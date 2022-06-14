@@ -1,9 +1,17 @@
 package lt.bit.productsstore.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
-
+@Entity
+@Table(name="store_products")
 public class Product {
-
-    private  Integer id;
+    @Id
+    private Integer id;
+    private String name;
+    private String description;
+    private LocalDate created;
 
     public Product(Integer id, String name, String description, LocalDate created) {
         this.id = id;
@@ -12,9 +20,9 @@ public class Product {
         this.created = created;
     }
 
-    private String name;
-    private String description;
-    private LocalDate created;
+    public Product() {
+
+    }
 
     public Integer getId() {
         return id;

@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/products")
-public class productController {
+class ProductController {
 
-    @GetMapping()
-List<Product> fetchProducts() {
-    return ProductStore.getProducts();
-}
+    @GetMapping
+    List<Product> fetchProducts() {
+        return ProductStore.getProducts();
+    }
 }
