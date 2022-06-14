@@ -1,5 +1,6 @@
-package lt.bit.productsstore.controller;
-import lt.bit.productsstore.model.Product;
+package lt.bit.products.store.controller;
+import lt.bit.products.store.model.Product;
+
 import java.time.LocalDate;
 import java.util.List;
 
