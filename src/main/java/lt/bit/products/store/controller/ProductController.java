@@ -32,7 +32,7 @@ class ProductController {
         }
         return ResponseEntity.ok(product);
     }
-
+    @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable int productId) {
         service.deleteProduct(productId);
