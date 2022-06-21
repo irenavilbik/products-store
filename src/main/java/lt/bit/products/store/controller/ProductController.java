@@ -75,4 +75,9 @@ class ProductController {
         service.deleteProduct(productId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping( "/count")
+   Long countProducts() {
+         return service.countProducts();
+    }
 }

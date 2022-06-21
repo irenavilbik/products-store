@@ -43,4 +43,8 @@ public class ProductService {
     public ProductItems getProductItems(Integer productId) {
         return productItemsRepository.findById(productId).orElse(null);
     }
+
+    public long countProducts() {
+         return repository.count();
+    }
 }
