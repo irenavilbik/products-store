@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-interface ProductItemsRepository extends JpaRepository<ProductItems, Integer> {
+public interface ProductItemsRepository extends JpaRepository<ProductItems, Integer> {
     void deleteAllByProductId (Integer productId);
 
 }
