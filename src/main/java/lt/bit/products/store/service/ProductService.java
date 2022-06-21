@@ -1,6 +1,8 @@
 package lt.bit.products.store.service;
 
 import java.util.List;
+import java.util.UUID;
+
 import lt.bit.products.store.model.Product;
 import lt.bit.products.store.model.ProductItems;
 import org.springframework.stereotype.Service;
@@ -28,9 +30,11 @@ public class ProductService {
     }
 
     public void deleteProduct(Integer id) {
-        repository.deleteStoreItems(id);// TODO: productItemsRepository.delete...
+        productItemsRepository.deleteAllByProductId(id);
         repository.deleteById(id);
     }
+
+
 
     public Product saveProduct(Product product) {
         return repository.save(product);
