@@ -1,8 +1,6 @@
 package lt.bit.products.store.service;
 
 import java.util.List;
-import java.util.UUID;
-
 import lt.bit.products.store.model.Product;
 import lt.bit.products.store.model.ProductItems;
 import org.springframework.stereotype.Service;
@@ -25,16 +23,19 @@ public class ProductService {
         return repository.findAll();
     }
 
+    public long countProducts() {
+        return repository.count();
+    }
+
     public Product findProduct(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
     public void deleteProduct(Integer id) {
+//    productItemsRepository.deleteById(id);
         productItemsRepository.deleteAllByProductId(id);
         repository.deleteById(id);
     }
-
-
 
     public Product saveProduct(Product product) {
         return repository.save(product);
@@ -42,9 +43,5 @@ public class ProductService {
 
     public ProductItems getProductItems(Integer productId) {
         return productItemsRepository.findById(productId).orElse(null);
-    }
-
-    public long countProducts() {
-         return repository.count();
     }
 }

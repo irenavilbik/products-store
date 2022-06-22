@@ -1,10 +1,13 @@
 package lt.bit.products.store.controller;
 
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
+
 import java.util.List;
 import lt.bit.products.store.model.Product;
 import lt.bit.products.store.model.ProductItems;
 import lt.bit.products.store.model.ProductRequest;
 import lt.bit.products.store.service.ProductService;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,18 +49,25 @@ class ProductController {
         return ResponseEntity.ok(service.saveProduct(Product.from(productRequest, id)));
     }
 
-    @GetMapping// TODO: add boolean withItems (e.g. /products?withItems=true)
+    @GetMapping
+// TODO: add boolean withItems (e.g. /products?withItems=true)
     List<Product> fetchProducts() {
         return service.findProducts();
     }
 
-    @GetMapping(ID_MAPPING)// TODO: add boolean withItems (e.g. /products?withItems=true)
+    @GetMapping(ID_MAPPING)
+// TODO: add boolean withItems (e.g. /products?withItems=true)
     ResponseEntity<Product> fetchProduct(@PathVariable Integer id) {
         Product product = service.findProduct(id);
         if (product == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/count")
+    long countProducts() {
+        return service.countProducts();
     }
 
     @GetMapping(ID_MAPPING + "/items")
@@ -67,6 +77,7 @@ class ProductController {
     }
 
     @DeleteMapping(ID_MAPPING)
+        //@RequestMapping(method = DELETE, value = ID_MAPPING)
     ResponseEntity<Void> deleteProduct(@PathVariable("id") Integer productId) {
         Product product = service.findProduct(productId);
         if (product == null) {
@@ -74,10 +85,5 @@ class ProductController {
         }
         service.deleteProduct(productId);
         return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping( "/count")
-   Long countProducts() {
-         return service.countProducts();
     }
 }
