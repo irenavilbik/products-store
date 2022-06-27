@@ -1,4 +1,5 @@
 package lt.bit.products.store.model;
+
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,16 +20,6 @@ public class Product {
     private String description;
     private LocalDate created;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", created=" + created +
-                '}';
-    }
-
     public static Product from(ProductRequest request, Integer id) {
         Product product = from(request);
         product.setId(id);
@@ -41,6 +32,16 @@ public class Product {
         product.setDescription(request.getDescription());
         product.setCreated(request.getCreated());
         return product;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                '}';
     }
 
     public Integer getId() {
